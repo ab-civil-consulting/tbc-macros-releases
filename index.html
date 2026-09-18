@@ -7,143 +7,183 @@
 <meta name="description" content="Free command pack for Trimble Business Center by AB Civil Consulting. A signed Windows installer with sixteen commands for linework, elevations, surface labels, machine-control export and project-to-project transfer.">
 <meta property="og:title" content="AB Civil TBC Macros">
 <meta property="og:description" content="Free, signed command pack for Trimble Business Center.">
-<meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='6' y='6' width='20' height='20' rx='6' fill='none' stroke='%232f6fb5' stroke-width='2.5'/%3E%3Crect x='13' y='13' width='6' height='6' fill='%231f6fc0'/%3E%3Cpath d='M16 1v6M16 25v6M1 16h6M25 16h6' stroke='%232f6fb5' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#111827">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='6' y='6' width='20' height='20' rx='6' fill='none' stroke='%233673B6' stroke-width='2.5'/%3E%3Crect x='13' y='13' width='6' height='6' fill='%233673B6'/%3E%3Cpath d='M16 1v6M16 25v6M1 16h6M25 16h6' stroke='%233673B6' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
 <style>
   :root{
-    --bg:#f4f6f8; --panel:#ffffff; --ink:#141922; --muted:#5b6675;
-    --line:#e3e8ee; --brand:#1f6fc0; --brand-ink:#ffffff; --accent:#2f6fb5;
-    --good:#1f8a4c; --shadow:0 1px 2px rgba(16,24,40,.06),0 8px 24px rgba(16,24,40,.06);
-  }
-  :root:not([data-theme="light"]){
-    @media (prefers-color-scheme: dark){
-      --bg:#0f1319; --panel:#161c25; --ink:#e8edf3; --muted:#9aa6b4;
-      --line:#242c38; --brand:#3b8fe0; --brand-ink:#06121f; --accent:#5aa2e6;
-      --good:#3ecf7a; --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.35);
-    }
-  }
-  :root[data-theme="dark"]{
-    --bg:#0f1319; --panel:#161c25; --ink:#e8edf3; --muted:#9aa6b4;
-    --line:#242c38; --brand:#3b8fe0; --brand-ink:#06121f; --accent:#5aa2e6;
-    --good:#3ecf7a; --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.35);
+    --bg:#111827;            /* gray-900, site background */
+    --bg-2:#0d1420;
+    --card:rgba(255,255,255,.04);
+    --card-2:rgba(255,255,255,.06);
+    --line:#374151;          /* gray-700 */
+    --ink:#e5e7eb;           /* gray-200 */
+    --muted:#9ca3af;         /* gray-400 */
+    --ab:#3673B6;            /* ab-blue */
+    --ab-dark:#2A5A8F;
+    --ab-light:#4A84C4;
+    --glow:0 0 40px rgba(54,115,182,.25);
   }
   *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
   body{margin:0;background:var(--bg);color:var(--ink);
-    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    -webkit-font-smoothing:antialiased}
-  a{color:var(--brand);text-decoration:none}
-  a:hover{text-decoration:underline}
-  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
-  header{padding:56px 0 8px}
-  .brand{display:flex;align-items:center;gap:12px;margin-bottom:28px}
-  .brand svg{width:34px;height:34px;flex:none}
-  .brand b{font-weight:700;letter-spacing:.2px}
-  .brand span{color:var(--muted);font-weight:500}
-  h1{font-size:40px;line-height:1.1;margin:0 0 12px;letter-spacing:-.5px}
-  .lede{font-size:19px;color:var(--muted);margin:0 0 28px;max-width:620px}
-  .cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px;margin:8px 0 10px}
-  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--brand);color:var(--brand-ink);
-    font-weight:650;font-size:17px;padding:14px 22px;border-radius:11px;box-shadow:var(--shadow);
-    transition:transform .05s ease,filter .15s ease}
-  .btn:hover{filter:brightness(1.05);text-decoration:none}
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;line-height:1.6}
+  a{color:var(--ab-light);text-decoration:none}
+  a:hover{color:#7fb0e0}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
+
+  /* white header bar, matching ab-civil.com */
+  .topbar{background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .topbar img{height:34px;width:auto;display:block}
+  .topbar a.home{color:#2A5A8F;font-weight:600;font-size:14px}
+  .topbar a.home:hover{color:var(--ab)}
+
+  /* hero */
+  .hero{position:relative;overflow:hidden;
+    background:
+      radial-gradient(1100px 460px at 78% -8%, rgba(54,115,182,.22), transparent 60%),
+      linear-gradient(180deg,#0d1420 0%, var(--bg) 60%)}
+  .hero .wrap{padding:76px 24px 60px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--ab-light);
+    font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px}
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--ab);box-shadow:0 0 10px var(--ab)}
+  h1{font-size:56px;line-height:1.03;letter-spacing:-1.5px;margin:0 0 18px;font-weight:800}
+  h1 .grad{background:linear-gradient(90deg,var(--ab),var(--ab-light));-webkit-background-clip:text;
+    background-clip:text;color:transparent}
+  .lede{font-size:20px;color:var(--muted);max-width:640px;margin:0 0 34px}
+  .cta{display:flex;flex-wrap:wrap;align-items:center;gap:16px 20px}
+  .btn{display:inline-flex;align-items:center;gap:11px;color:#fff;font-weight:700;font-size:17px;
+    padding:15px 26px;border-radius:14px;background:linear-gradient(90deg,var(--ab),var(--ab-light));
+    box-shadow:var(--glow);transition:transform .06s ease,filter .18s ease}
+  .btn:hover{filter:brightness(1.08);color:#fff}
   .btn:active{transform:translateY(1px)}
   .btn svg{width:20px;height:20px}
-  .sub{color:var(--muted);font-size:14px}
-  .sub a{color:var(--muted);text-decoration:underline}
-  .trust{display:inline-flex;align-items:center;gap:8px;color:var(--good);font-size:14px;font-weight:600;margin-top:4px}
-  .trust svg{width:16px;height:16px}
-  section{margin:44px 0}
-  h2{font-size:15px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin:0 0 16px;font-weight:700}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 24px;box-shadow:var(--shadow)}
-  ol.steps{margin:0;padding:0;list-style:none;counter-reset:s}
-  ol.steps li{counter-increment:s;position:relative;padding:0 0 16px 42px}
-  ol.steps li:last-child{padding-bottom:0}
-  ol.steps li::before{content:counter(s);position:absolute;left:0;top:-1px;width:28px;height:28px;
-    display:grid;place-items:center;background:var(--brand);color:var(--brand-ink);border-radius:50%;
-    font-size:14px;font-weight:700}
-  code{background:color-mix(in srgb,var(--brand) 12%,transparent);color:var(--ink);
-    padding:2px 6px;border-radius:6px;font:13.5px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
-  .grid div{padding:9px 0;border-bottom:1px solid var(--line)}
-  .grid b{font-weight:650}
-  .grid small{display:block;color:var(--muted);font-weight:400;font-size:13.5px;margin-top:1px}
-  .note{color:var(--muted);font-size:14.5px}
-  footer{margin:56px 0 40px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+  .meta{color:var(--muted);font-size:14px}
+  .meta a{color:var(--muted);text-decoration:underline}
+  .verified{display:inline-flex;align-items:center;gap:7px;margin-top:22px;
+    padding:7px 12px;border:1px solid var(--line);border-radius:999px;background:var(--card);
+    color:#cbd5e1;font-size:13px;font-weight:500}
+  .verified svg{width:15px;height:15px;color:var(--ab-light)}
+  .verified b{color:var(--ink);font-weight:600}
+
+  section{padding:52px 0}
+  .kicker{font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:var(--ab-light);
+    font-weight:700;margin:0 0 18px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 28px}
+
+  ol.steps{margin:0;padding:0;list-style:none;counter-reset:s;display:grid;gap:18px}
+  ol.steps li{counter-increment:s;position:relative;padding-left:52px;color:var(--ink)}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:34px;height:34px;
+    display:grid;place-items:center;border-radius:50%;color:#fff;font-weight:700;font-size:15px;
+    background:linear-gradient(135deg,var(--ab),var(--ab-light));box-shadow:0 0 16px rgba(54,115,182,.35)}
+  ol.steps b{color:#fff}
+  code{background:rgba(54,115,182,.16);color:#dbeafe;padding:2px 7px;border-radius:6px;
+    font:13.5px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  .hint{color:var(--muted);font-size:14.5px;margin-top:16px}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 26px}
+  .grid .cmd{padding:13px 0;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:flex-start}
+  .grid .cmd .tick{color:var(--ab-light);flex:none;margin-top:3px}
+  .grid .cmd .tick svg{width:16px;height:16px;display:block}
+  .grid .cmd b{font-weight:650;color:var(--ink)}
+  .grid .cmd small{display:block;color:var(--muted);font-size:13.5px;margin-top:1px}
+
+  footer{border-top:1px solid var(--line);padding:34px 0 46px;color:var(--muted);font-size:14px}
+  footer img{height:26px;width:auto;opacity:.9;margin-bottom:14px;display:block}
   footer a{color:var(--muted);text-decoration:underline}
-  @media(max-width:560px){h1{font-size:32px}.grid{grid-template-columns:1fr}header{padding-top:40px}}
+  .disc{margin-top:12px;font-size:12.5px;color:#6b7280}
+
+  @media(max-width:620px){
+    h1{font-size:38px}
+    .grid{grid-template-columns:1fr}
+    .hero .wrap{padding:52px 24px 44px}
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <header>
-    <div class="brand">
-      <svg viewBox="0 0 32 32" aria-hidden="true">
-        <rect x="6" y="6" width="20" height="20" rx="6" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
-        <rect x="13" y="13" width="6" height="6" fill="var(--brand)"/>
-        <path d="M16 1v6M16 25v6M1 16h6M25 16h6" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>
-      <b>AB Civil<span> Consulting</span></b>
+  <div class="topbar">
+    <div class="wrap">
+      <a href="https://ab-civil.com" aria-label="AB Civil"><img src="assets/logo.png" alt="AB Civil"></a>
+      <a class="home" href="https://ab-civil.com">ab-civil.com &rarr;</a>
     </div>
+  </div>
 
-    <h1>TBC Macros</h1>
-    <p class="lede">A free command pack for Trimble Business Center. Sixteen tools for drawing and cleaning linework, elevating 2D lines, labeling surfaces, exporting machine-control packages, and moving objects between projects.</p>
-
-    <div class="cta">
-      <a class="btn" href="https://github.com/ab-civil-consulting/tbc-macros-releases/releases/latest/download/ABCivil-TBC-Macros-Setup.exe">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>
-        Download for Windows
-      </a>
-      <span class="sub">Windows installer &middot; <a href="https://github.com/ab-civil-consulting/tbc-macros-releases/releases">all versions &amp; ZIP</a></span>
-    </div>
-    <div class="trust">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
-      Digitally signed by AB Civil Consulting, LLC
-    </div>
-  </header>
-
-  <section>
-    <h2>Install &mdash; about a minute</h2>
-    <div class="card">
-      <ol class="steps">
-        <li>Close Trimble Business Center if it&rsquo;s open.</li>
-        <li>Run the installer and click through it. Windows asks for admin permission; if a blue &ldquo;Windows protected your PC&rdquo; screen appears, choose <b>More info &rarr; Run anyway</b> (it shows AB Civil Consulting, LLC as the publisher).</li>
-        <li>Open TBC and type an underscore ( <code>_</code> ) or <code>ABC</code> in the command search box to find the new commands.</li>
-      </ol>
-    </div>
-    <p class="note" style="margin-top:14px">Macros install to <code>C:\ProgramData\Trimble\MacroCommands3\ABCivil</code>. To update, run a newer installer &mdash; it replaces the old versions in place. Uninstall from Windows Settings &rsaquo; Apps.</p>
-  </section>
-
-  <section>
-    <h2>What&rsquo;s inside</h2>
-    <div class="card">
-      <div class="grid">
-        <div><b>Quick Line Advanced</b><small>Fast 2D/3D linestrings, add-to-surface as you draw</small></div>
-        <div><b>Join Selected Lines</b><small>Merge lines, bridge gaps, fix direction</small></div>
-        <div><b>Break at Offset</b><small>Break lines at a virtual offset of a reference</small></div>
-        <div><b>Name Lines by Layer</b><small>Auto-name linework from its layer</small></div>
-        <div><b>Trim Line Ends</b><small>Shave dangling ends off selected lines</small></div>
-        <div><b>Trim Intersecting Lines</b><small>Trim lines inside/outside an area, with preview</small></div>
-        <div><b>ABC Relayer</b><small>Sticky target layer, Ctrl+R companion</small></div>
-        <div><b>Convert To Linestring</b><small>CAD lines &amp; arcs to TBC linestrings</small></div>
-        <div><b>Elevate From 3D Lines</b><small>Give 2D lines elevations from crossing 3D lines</small></div>
-        <div><b>Surface Elevation Label</b><small>Live surface elevation label with leader</small></div>
-        <div><b>Surface Slope Label</b><small>Label slope % along a draped line</small></div>
-        <div><b>Design Exporter</b><small>One-button DXF / LandXML / VCL machine-control export</small></div>
-        <div><b>Capture Background Image</b><small>Georeferenced background images with world files</small></div>
-        <div><b>Quick Export / Import VCL</b><small>Move objects &amp; PDFs between TBC projects</small></div>
-        <div><b>Sync Plan Views</b><small>Lock two plan views to pan/zoom together</small></div>
+  <div class="hero">
+    <div class="wrap">
+      <div class="eyebrow"><span class="dot"></span> For Trimble Business Center</div>
+      <h1>TBC&nbsp;Macros<br><span class="grad">by AB Civil</span></h1>
+      <p class="lede">A free pack of sixteen commands for Trimble Business Center &mdash; drawing and cleaning linework, elevating 2D lines, labeling surfaces, exporting machine-control packages, and moving objects between projects.</p>
+      <div class="cta">
+        <a class="btn" href="https://github.com/ab-civil-consulting/tbc-macros-releases/releases/latest/download/ABCivil-TBC-Macros-Setup.exe">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>
+          Download for Windows
+        </a>
+        <span class="meta">Windows installer &middot; <a href="https://github.com/ab-civil-consulting/tbc-macros-releases/releases">all versions &amp; ZIP</a></span>
+      </div>
+      <div class="verified">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+        Signed installer &mdash; verified publisher <b>AB Civil Consulting, LLC</b>
       </div>
     </div>
-  </section>
+  </div>
+
+  <div class="wrap">
+
+    <section>
+      <p class="kicker">Install &mdash; about a minute</p>
+      <div class="card">
+        <ol class="steps">
+          <li>Close Trimble Business Center if it&rsquo;s open.</li>
+          <li>Run the installer and click through it. Windows will ask for admin permission. If a blue &ldquo;Windows protected your PC&rdquo; screen appears, choose <b>More info &rarr; Run anyway</b> &mdash; it shows the verified publisher <b>AB Civil Consulting, LLC</b>.</li>
+          <li>Open TBC. The commands appear on a new <b>AB Civil</b> ribbon tab, or type an underscore ( <code>_</code> ) or <code>ABC</code> in the command search box.</li>
+        </ol>
+        <p class="hint">Installs to <code>C:\ProgramData\Trimble\MacroCommands3\ABCivil</code>. To update, run a newer installer &mdash; it replaces the old version in place. Uninstall cleanly from Windows Settings &rsaquo; Apps.</p>
+      </div>
+    </section>
+
+    <section>
+      <p class="kicker">Sixteen commands</p>
+      <div class="card">
+        <div class="grid" id="cmds"></div>
+      </div>
+    </section>
+
+  </div>
 
   <footer>
-    Built by <a href="https://ab-civil.com">AB Civil Consulting</a> for our own 3D modeling work and shared free, as-is.
-    Questions or bugs: <a href="mailto:adam@ab-civil.com">adam@ab-civil.com</a>.
-    Source &amp; release notes on <a href="https://github.com/ab-civil-consulting/tbc-macros-releases">GitHub</a>.
-    <br>Trimble Business Center is a trademark of Trimble Inc.; this project is not affiliated with or endorsed by Trimble.
+    <div class="wrap">
+      <img src="assets/logo-white.png" alt="AB Civil Consulting">
+      Built by <a href="https://ab-civil.com">AB Civil Consulting</a> for our own 3D modeling work and shared free, as-is.
+      Questions or bugs: <a href="mailto:adam@ab-civil.com">adam@ab-civil.com</a>.
+      Release notes on <a href="https://github.com/ab-civil-consulting/tbc-macros-releases/releases">GitHub</a>.
+      <div class="disc">Trimble Business Center is a trademark of Trimble Inc. This project is not affiliated with or endorsed by Trimble.</div>
+    </div>
   </footer>
 
-</div>
+<script>
+  var TICK='<span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>';
+  var CMDS=[
+    ["Quick Line Advanced","Fast 2D/3D linestrings, add-to-surface as you draw"],
+    ["Join Selected Lines","Merge lines, bridge gaps, fix direction"],
+    ["Break at Offset","Break lines at a virtual offset of a reference"],
+    ["Name Lines by Layer","Auto-name linework from its layer"],
+    ["Trim Line Ends","Shave dangling ends off selected lines"],
+    ["Trim Intersecting Lines","Trim lines inside or outside an area, with preview"],
+    ["Convert To Linestring","CAD lines and arcs to TBC linestrings"],
+    ["ABC Relayer","Sticky target layer, Ctrl+R companion"],
+    ["Elevate From 3D Lines","Give 2D lines elevations from crossing 3D lines"],
+    ["Surface Elevation Label","Live surface elevation label with leader"],
+    ["Surface Slope Label","Label slope % along a draped line"],
+    ["Design Exporter","One-button DXF / LandXML / VCL machine-control export"],
+    ["Capture Background Image","Georeferenced background images with world files"],
+    ["Quick Export / Import VCL","Move objects and PDFs between TBC projects"],
+    ["Sync Plan Views","Lock two plan views to pan and zoom together"]
+  ];
+  document.getElementById('cmds').innerHTML = CMDS.map(function(c){
+    return '<div class="cmd">'+TICK+'<div><b>'+c[0]+'</b><small>'+c[1]+'</small></div></div>';
+  }).join('');
+</script>
 </body>
 </html>
